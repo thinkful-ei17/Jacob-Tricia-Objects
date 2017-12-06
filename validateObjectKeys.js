@@ -30,37 +30,24 @@ const objectB = {
 const expectedKeys = ['id', 'name', 'age', 'city'];
 
 function validateKeys(object, expectedKeys) {
-    // check to see if same number of keys inside object and expectedkeys,
-    // if missinged keys or extra than return faslse
+    let isKeyInObject = false;
+
     if (Object.keys(object).length !== expectedKeys.length) {
-        return false;
-    }
-
-    // loop through expectedkey and verify that all are found inside the object
-
-    // expectedKeys.forEach(function(item) {
-    // Object.keys(object) !== item;
-    // return false;
-    // });
-
-    let isKeyInObj = false;
-
-    for (let i = 0; i < expectedKeys.length; i++) {
-        if (object.hasOwnProperty(expectedKeys[i])) { //returns T or F
-            isKeyInObj = true;
-            console.log(`true + ${i}`);
-        } else {
-            isKeyInObj = false;
-            console.log(`false + ${i}`);
+        isKeyInObject = false;
+    } else {
+        for (let i = 0; i < expectedKeys.length; i++) {
+            if (object.hasOwnProperty(expectedKeys[i])) {
+                isKeyInObject = true;
+            } else {
+                isKeyInObject = false;
+            }
         }
     }
-
-    return isKeyInObj;
-
+    return isKeyInObject;
 }
 
 
-
+// if (!Object.keys(object).find(key => key === expectedKeys[i])) {
 
 
 /* From here down, you are not expected to 
