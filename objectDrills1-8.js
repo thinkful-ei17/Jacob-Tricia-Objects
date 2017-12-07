@@ -140,15 +140,47 @@ function createCharacter(name, nickName, race, origin, attack, defense) {
         defense,
         describe: function() {
             console.log(`${this.name} is a ${this.race} from ${this.origin}`)
-        }
+        },
         evaluateFlight: function(characterObj) {
-                return (`Your opponent takes ${this.defence > this.attack} ? ${this.defense = 0} : ${this.attack - this.defense}  damage and you receive {y} damage)
+            return (`Your opponent takes ${this.defense > this.attack ? 'zero' : this.attack - this.defense} damage and you receive ${characterObj.defense > characterObj.attack ? 'zero' : characterObj.attack - characterObj.defense} damage`)
         }
 
     }
 };
 
-const lotrCharacter = createCharacter('Gandalf the White', 'gandalf', 'Wizard', 'Middle Earth', 10, 6);
+const characters = [];
 
+const gandalf = createCharacter('Gandalf the White', 'gandalf', 'Wizard', 'Middle Earth', 10, 6);
+const bilbo = createCharacter('Bilbo Baggins', 'bilbo', 'Hobbit', 'The Shire', 2, 1);
+const frodo = createCharacter('Frodo Baggins', 'frodo', 'Hobbit', 'The Shire', 3, 2);
+const aragorn = createCharacter('Aragorn son of Arathorn', 'aragorn', 'Man', 'Dunnedain', 6, 8);
+const legolas = createCharacter('Legolas', 'legolas', 'Elf', 'Woodland Realm', 8, 5);
+const arwen = createCharacter('Arwen Undomiel', 'arwen', 'Half-Elf', 'Rivendell', 4, 2);
 
-lotrCharacter.describe();
+gandalf.describe();
+console.log(frodo.evaluateFlight(gandalf));
+console.log(frodo.evaluateFlight(aragorn));
+
+characters.push(gandalf);
+characters.push(bilbo);
+characters.push(frodo);
+characters.push(aragorn);
+characters.push(legolas);
+characters.push(arwen);
+
+console.log('\n');
+
+function isAragorn(character) {
+    return character.nickName === 'aragorn';
+}
+characters.find(isAragorn).describe();
+
+console.log('\n');
+
+const hobbitCharacters = characters.filter(char => char.race === 'Hobbit');
+console.log(hobbitCharacters);
+
+console.log('\n');
+
+const attackValues = characters.filter(char => char.attack > 5);
+console.log(attackValues);
